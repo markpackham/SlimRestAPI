@@ -59,6 +59,7 @@ $app->get('/api/customer/{id}', function (Request $request, Response $response) 
 //Add Customer
 //Notice we are using post instead of get, a 3rd party app could be used to submit the data in json
 //This data would then populate our database providing it was done via post
+//A good plugin to use would be Chrome's RestEasy
 $app->post('/api/customer/add', function (Request $request, Response $response) {
 
     $first_name = $request->getParam('first_name');
@@ -120,9 +121,9 @@ $app->put('/api/customer/update/{id}', function (Request $request, Response $res
 			WHERE id = $id";
 
     try {
-        // Get DB Object
+        // Get Database Object
         $db = new db();
-        // Connect
+        // Connect to database
         $db = $db->connect();
 
         $stmt = $db->prepare($sql);
@@ -151,9 +152,9 @@ $app->delete('/api/customer/delete/{id}', function (Request $request, Response $
     $sql = "DELETE FROM customers WHERE id = $id";
 
     try {
-        // Get DB Object
+        // Get Database Object
         $db = new db();
-        // Connect
+        // Connect to database
         $db = $db->connect();
 
         $stmt = $db->prepare($sql);
